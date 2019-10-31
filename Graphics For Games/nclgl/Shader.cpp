@@ -34,10 +34,7 @@ GLuint Shader::GenerateShader(string from, GLenum type)
 		cout << " Compiling failed !" << endl;
 		loadFailed = true;
 		return 0;
-
 	}
-
-
 
 	GLuint shader = glCreateShader(type);
 
@@ -106,4 +103,5 @@ void Shader::SetDefaultAttributes()
 {
 	glBindAttribLocation(program, VERTEX_BUFFER, "position");
 	glBindAttribLocation(program, COLOUR_BUFFER, "colour");
+	glBindAttribLocation(program, TEXTURE_BUFFER, "texCoord");
 }

@@ -1,16 +1,20 @@
 #pragma once
 #include "OGLRenderer.h"
 
-enum MeshBuffer { VERTEX_BUFFER, COLOUR_BUFFER, MAX_BUFFER };
+enum MeshBuffer 
+{
+	VERTEX_BUFFER, COLOUR_BUFFER, TEXTURE_BUFFER, MAX_BUFFER
+};
 class Mesh
 {
 public:
 	Mesh(void);
 	~Mesh(void);
-
+	
 	virtual void Draw();
+	void SetTexture(GLuint tex) { texture = tex; }
 	static Mesh* GenerateTriangle();
-
+	GLuint GetTexture() { return texture; }
 protected:
 	void BufferData();
 
@@ -18,7 +22,9 @@ protected:
 	GLuint bufferObject[MAX_BUFFER];
 	GLuint numVertices;
 	GLuint type;
-
+	GLuint texture;
+	
+	Vector2* textureCoords;
 	Vector3* vertices;
 	Vector4* colours;
 };

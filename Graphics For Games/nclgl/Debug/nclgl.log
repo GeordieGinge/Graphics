@@ -1,17 +1,7 @@
 ﻿  Camera.cpp
-  GameTimer.cpp
-  Keyboard.cpp
-  Matrix4.cpp
-  MD5Anim.cpp
-  MD5FileData.cpp
-  MD5Mesh.cpp
-  MD5Node.cpp
   Mesh.cpp
-  Mouse.cpp
-  OBJMesh.cpp
   OGLRenderer.cpp
-  Quaternion.cpp
   Shader.cpp
   Window.cpp
   Generating Code...
-  nclgl.vcxproj -> C:\Users\Admin\Desktop\Graphics For Games\Graphics For Games\Debug\nclgl.lib
+  nclgl.vcxproj -> C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Debug\nclgl.lib
