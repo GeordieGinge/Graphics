@@ -10,10 +10,11 @@ class Mesh
 public:
 	Mesh(void);
 	~Mesh(void);
-	
+
 	virtual void Draw();
 	void SetTexture(GLuint tex) { texture = tex; }
 	static Mesh* GenerateTriangle();
+	static Mesh* GenerateQuad();
 	GLuint GetTexture() { return texture; }
 protected:
 	void BufferData();
@@ -23,7 +24,7 @@ protected:
 	GLuint numVertices;
 	GLuint type;
 	GLuint texture;
-	
+
 	Vector2* textureCoords;
 	Vector3* vertices;
 	Vector4* colours;
