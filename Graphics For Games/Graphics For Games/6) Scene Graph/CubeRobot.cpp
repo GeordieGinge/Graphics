@@ -18,7 +18,7 @@ CubeRobot::CubeRobot(void)
 	body->AddChild(head);
 
 	leftArm = new SceneNode(cube, Vector4(0, 0, 1, 1)); // Blue !
-	leftArm->SetModelScale(Vector3(3, -18, 3));
+	leftArm->SetModelScale(Vector3(3, -20, 3));
 	leftArm->SetTransform(Matrix4::Translation(Vector3(-12, 30, -1)));
 	body->AddChild(leftArm);
 
@@ -42,22 +42,22 @@ CubeRobot::CubeRobot(void)
 void CubeRobot::Update(float msec) 
 {
 	 transform = transform *
-		 Matrix4::Rotation(msec / 10.0f, Vector3(0, 1, 0));
+		 Matrix4::Rotation(msec / 10.0f, Vector3(0,1,0));
 	
 		 head -> SetTransform(head -> GetTransform() *
 			 Matrix4::Rotation(-msec / 10.0f, Vector3(0, 1, 0)));
 	
 		
 		 leftArm -> SetTransform(leftArm -> GetTransform() *
-			 Matrix4::Rotation(-msec / 10.0f, Vector3(1, 0, 0)));
+			 Matrix4::Rotation(-msec / 10.0f, Vector3(-1,-1,0)));
 	
 		 rightArm -> SetTransform(rightArm -> GetTransform() *
-			 Matrix4::Rotation(msec / 10.0f, Vector3(1, 0, 0)));
+			 Matrix4::Rotation(msec / 10.0f, Vector3(1,1,0)));
 	
 		 leftLeg->SetTransform (leftLeg->GetTransform() *
-				 Matrix4::Rotation(msec / 10.0f, Vector3(1, 0, 0)));
+				 Matrix4::Rotation(msec / 10.0f, Vector3(0, 0, 0)));
 
 		 rightLeg->SetTransform(rightLeg->GetTransform() *
-			 Matrix4::Rotation(msec / 10.0f, Vector3(1, 0, 0)));
+			 Matrix4::Rotation(msec / 10.0f, Vector3(0, 0, 0)));
 		 SceneNode::Update(msec);
 }
