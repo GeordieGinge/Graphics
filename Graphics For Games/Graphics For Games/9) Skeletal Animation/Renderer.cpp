@@ -1,4 +1,4 @@
-#ifdef WEEK_2_CODE
+
 #include "Renderer.h"
 
 Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{	
@@ -62,4 +62,3 @@ void Renderer::RenderScene()	{
 	glUseProgram(0);
 	SwapBuffers();
 }
-#endif

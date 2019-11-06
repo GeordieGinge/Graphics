@@ -3,7 +3,7 @@
 
 enum MeshBuffer 
 {
-	VERTEX_BUFFER, COLOUR_BUFFER, TEXTURE_BUFFER, MAX_BUFFER
+	VERTEX_BUFFER, COLOUR_BUFFER, TEXTURE_BUFFER, INDEX_BUFFER, MAX_BUFFER
 };
 class Mesh
 {
@@ -24,6 +24,8 @@ protected:
 	GLuint numVertices;
 	GLuint type;
 	GLuint texture;
+	GLuint numIndices;
+	unsigned int* indices;
 
 	Vector2* textureCoords;
 	Vector3* vertices;

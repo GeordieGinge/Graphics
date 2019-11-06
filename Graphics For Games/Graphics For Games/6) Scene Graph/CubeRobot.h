@@ -2,8 +2,6 @@
 #include "SceneNode.h"
 #include "../../nclgl/OBJMesh.h"
 
-
-
 class CubeRobot : public SceneNode 
 {
 public:

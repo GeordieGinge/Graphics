@@ -1,1 +1,15 @@
-﻿
+﻿  Renderer.cpp
+C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\9) Skeletal Animation\Renderer.cpp(56,61): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+  Tutorial9.cpp
+  Generating Code...
+C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\9) Skeletal Animation\Renderer.cpp(56,49): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+LINK : warning LNK4286: symbol '___glewGetUniformLocation' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
+LINK : warning LNK4286: symbol '___glewUniform1i' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
+LINK : warning LNK4286: symbol '___glewUseProgram' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
+Renderer.obj : error LNK2019: unresolved external symbol "public: __thiscall MD5FileData::MD5FileData(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (??0MD5FileData@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: __thiscall Renderer::Renderer(class Window &)" (??0Renderer@@QAE@AAVWindow@@@Z)
+Renderer.obj : error LNK2019: unresolved external symbol "public: __thiscall MD5FileData::~MD5FileData(void)" (??1MD5FileData@@QAE@XZ) referenced in function "public: void * __thiscall MD5FileData::`scalar deleting destructor'(unsigned int)" (??_GMD5FileData@@QAEPAXI@Z)
+Renderer.obj : error LNK2019: unresolved external symbol "public: void __thiscall MD5FileData::AddAnim(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?AddAnim@MD5FileData@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: __thiscall Renderer::Renderer(class Window &)" (??0Renderer@@QAE@AAVWindow@@@Z)
+Renderer.obj : error LNK2019: unresolved external symbol "public: __thiscall MD5Node::MD5Node(class MD5FileData const &)" (??0MD5Node@@QAE@ABVMD5FileData@@@Z) referenced in function "public: __thiscall Renderer::Renderer(class Window &)" (??0Renderer@@QAE@AAVWindow@@@Z)
+Renderer.obj : error LNK2019: unresolved external symbol "public: __thiscall MD5Node::~MD5Node(void)" (??1MD5Node@@QAE@XZ) referenced in function "public: void * __thiscall MD5Node::`scalar deleting destructor'(unsigned int)" (??_GMD5Node@@QAEPAXI@Z)
+Renderer.obj : error LNK2019: unresolved external symbol "public: void __thiscall MD5Node::PlayAnim(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?PlayAnim@MD5Node@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: __thiscall Renderer::Renderer(class Window &)" (??0Renderer@@QAE@AAVWindow@@@Z)
+C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Debug\Tutorial 09 - Skeletal Animation.exe : fatal error LNK1120: 6 unresolved externals

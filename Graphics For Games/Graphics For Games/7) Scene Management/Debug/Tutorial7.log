@@ -1,2 +1,7 @@
 ﻿  CubeRobot.cpp
+  Frustum.cpp
+  Renderer.cpp
+  SceneNode.cpp
+  Tutorial7.cpp
+  Generating Code...
   Tutorial7.vcxproj -> C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Debug\Tutorial 07 - Scene Management.exe

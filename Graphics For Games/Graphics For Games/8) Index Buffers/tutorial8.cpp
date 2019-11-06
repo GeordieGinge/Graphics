@@ -5,12 +5,14 @@
 
 int main() {	
 	Window w("Index Buffers!", 800,600,false);
-	if(!w.HasInitialised()) {
+	if(!w.HasInitialised()) 
+	{
 		return -1;
 	}
 
 	Renderer renderer(w);
-	if(!renderer.HasInitialised()) {
+	if(!renderer.HasInitialised()) 
+	{
 		return -1;
 	}
 
@@ -21,5 +23,8 @@ int main() {
 		renderer.UpdateScene(w.GetTimer()->GetTimedMS());
 		renderer.RenderScene();
 	}
+	
 	return 0;
+
+	
 }

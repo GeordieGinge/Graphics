@@ -38,7 +38,6 @@ CubeRobot::CubeRobot(void)
 	body->AddChild(rightLeg);
 }
 
-
 void CubeRobot::Update(float msec) 
 {
 	 transform = transform *
