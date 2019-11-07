@@ -14,7 +14,8 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 
 	hellNode		= new MD5Node(*hellData);
 
-	if(!currentShader->LinkProgram()) {
+	if(!currentShader->LinkProgram()) 
+	{
 		return;
 	}
 
@@ -29,17 +30,16 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 	init = true;
 }
 
-Renderer::~Renderer(void)	{
+Renderer::~Renderer(void)	
+{
 	delete camera;
-
 	delete hellData;
 	delete hellNode;
 }
 
  void Renderer::UpdateScene(float msec)	{
 	camera->UpdateCamera(msec); 
-	viewMatrix		= camera->BuildViewMatrix();
-
+	viewMatrix = camera->BuildViewMatrix();
 	hellNode->Update(msec);
 }
 

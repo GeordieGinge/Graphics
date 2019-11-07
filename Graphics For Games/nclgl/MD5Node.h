@@ -27,14 +27,15 @@ _-_-_-_-_-_-_-""  ""
 
 *//////////////////////////////////////////////////////////////////////////////
 #include "common.h"
-#ifdef USE_MD5MESH
-#ifdef WEEK_2_CODE
+
+
 #pragma once
-#include "scenenode.h"
+#include "..\Graphics For Games\9) Skeletal Animation\SceneNode.h"
 #include "MD5FileData.h"
 #include "MD5Mesh.h"
 
-class MD5Node : public SceneNode	{
+class MD5Node : public SceneNode	
+{
 public:
 	MD5Node(const MD5FileData &ofType);
 	~MD5Node(void);
@@ -101,5 +102,3 @@ protected:
 	float				frameTime;
 	unsigned int		currentAnimFrame;	//Current frame of animation
 };
-#endif
-#endif

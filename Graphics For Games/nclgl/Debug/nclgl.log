@@ -1,4 +1,7 @@
-﻿  Mesh.cpp
+﻿  MD5Anim.cpp
+  MD5FileData.cpp
+  MD5Mesh.cpp
+  MD5Node.cpp
   OBJMesh.cpp
   Generating Code...
   nclgl.vcxproj -> C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Debug\nclgl.lib
