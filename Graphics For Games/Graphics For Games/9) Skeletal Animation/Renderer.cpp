@@ -5,7 +5,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 	camera			= new Camera(0,-90.0f,Vector3(-180,60,0));
 
 #ifdef MD5_USE_HARDWARE_SKINNING
-	currentShader   = new Shader("skeletonvertex.glsl", SHADERDIR"TexturedFragment.glsl");
+	currentShader   = new Shader(SHADERDIR"skeletonvertexsimple.glsl", SHADERDIR"TexturedFragment.glsl");
 #else
 	currentShader   = new Shader(SHADERDIR"TexturedVertex.glsl", SHADERDIR"TexturedFragment.glsl");
 #endif
@@ -19,9 +19,9 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 		return;
 	}
 
-	hellData->AddAnim(MESHDIR"idle2.md5anim");
-	hellNode->PlayAnim(MESHDIR"idle2.md5anim");
-
+	hellData->AddAnim(MESHDIR"attack2.md5anim");
+	hellNode->PlayAnim(MESHDIR"attack2.md5anim");
+	
 	projMatrix = Matrix4::Perspective(1.0f,10000.0f,(float)width / (float)height, 45.0f);
 
 	glEnable(GL_DEPTH_TEST);
@@ -51,14 +51,13 @@ void Renderer::RenderScene()	{
 
 	UpdateShaderMatrices();
 
-	for(int y = 0; y < 10; ++y) {
-		for(int x = 0; x < 10; ++x) {
+	for(int y = 0; y < 20; ++y) { //Used for spawning multiple enemies at an increwaing position
+		for(int x = 0; x < 20; ++x) {
 			modelMatrix = Matrix4::Translation(Vector3(x * 100, 0, y * 100));
 			UpdateShaderMatrices();	
 			hellNode->Draw(*this);
 		}
 	}
-
 	glUseProgram(0);
 	SwapBuffers();
 }

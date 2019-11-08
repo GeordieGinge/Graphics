@@ -3,10 +3,4 @@ C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\9) 
   Tutorial9.cpp
   Generating Code...
 C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\9) Skeletal Animation\Renderer.cpp(56,49): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-LINK : warning LNK4286: symbol '___glewGetUniformLocation' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
-LINK : warning LNK4286: symbol '___glewUniform1i' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
-LINK : warning LNK4286: symbol '___glewUseProgram' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
-nclgl.lib(MD5FileData.obj) : error LNK2019: unresolved external symbol "public: __thiscall MD5Anim::MD5Anim(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0MD5Anim@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: void __thiscall MD5FileData::AddAnim(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?AddAnim@MD5FileData@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
-nclgl.lib(MD5FileData.obj) : error LNK2019: unresolved external symbol "public: __thiscall MD5Anim::~MD5Anim(void)" (??1MD5Anim@@QAE@XZ) referenced in function "public: void * __thiscall MD5Anim::`scalar deleting destructor'(unsigned int)" (??_GMD5Anim@@QAEPAXI@Z)
-nclgl.lib(MD5Node.obj) : error LNK2019: unresolved external symbol "public: void __thiscall MD5Anim::TransformSkeleton(struct MD5Skeleton &,unsigned int)" (?TransformSkeleton@MD5Anim@@QAEXAAUMD5Skeleton@@I@Z) referenced in function "public: virtual void __thiscall MD5Node::Update(float)" (?Update@MD5Node@@UAEXM@Z)
-C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Debug\Tutorial 09 - Skeletal Animation.exe : fatal error LNK1120: 3 unresolved externals
+  Tutorial9.vcxproj -> C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Debug\Tutorial 09 - Skeletal Animation.exe

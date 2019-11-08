@@ -16,6 +16,7 @@ layout(location = 10) in vec2 weighting;
 
 out Vertex	{
 	vec2 	texCoord;
+vec4 pos;
 } OUT;
 
 void main(void)	{
