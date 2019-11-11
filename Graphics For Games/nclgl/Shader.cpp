@@ -96,6 +96,25 @@ bool Shader::LinkProgram()
 	
 		 GLint code;
 	 glGetProgramiv(program, GL_LINK_STATUS, &code);
+	 if (code == GL_FALSE)
+	 {
+		 GLint maxLength = 0;
+		 glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
+
+		 // The maxLength includes the NULL character
+		 std::vector<GLchar> infoLog(maxLength);
+		 glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
+
+		 // The program is useless now. So delete it.
+		 glDeleteProgram(program);
+		 for (auto x : infoLog)
+			 std::cout << x;
+		 std::cout << std::endl;
+
+		 // Provide the infolog in whatever manner you deem best.
+		 // Exit with failure.
+		 return false;
+	 }
 	 return code == GL_TRUE ? true : false;
 }
 
@@ -103,5 +122,6 @@ void Shader::SetDefaultAttributes()
 {
 	glBindAttribLocation(program, VERTEX_BUFFER, "position");
 	glBindAttribLocation(program, COLOUR_BUFFER, "colour");
+	glBindAttribLocation(program, NORMAL_BUFFER, "normal");
 	glBindAttribLocation(program, TEXTURE_BUFFER, "texCoord");
 }

@@ -3,7 +3,7 @@
 
 enum MeshBuffer 
 {
-	VERTEX_BUFFER, COLOUR_BUFFER, TEXTURE_BUFFER, INDEX_BUFFER, MAX_BUFFER
+	VERTEX_BUFFER, COLOUR_BUFFER, TEXTURE_BUFFER, NORMAL_BUFFER, INDEX_BUFFER, MAX_BUFFER
 };
 class Mesh
 {
@@ -18,6 +18,7 @@ public:
 	GLuint GetTexture() { return texture; }
 protected:
 	void BufferData();
+	void GenerateNormals();
 
 	GLuint arrayObject;
 	GLuint bufferObject[MAX_BUFFER];
@@ -28,6 +29,7 @@ protected:
 	unsigned int* indices;
 
 	Vector2* textureCoords;
+	Vector3* normals;
 	Vector3* vertices;
 	Vector4* colours;
 };
