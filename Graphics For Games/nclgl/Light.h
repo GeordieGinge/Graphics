@@ -24,6 +24,7 @@ public:
 	Vector4 GetColour() const { return colour; }
 	void SetColour(Vector4 val) { colour = val; }
 
+
 protected:
 	Vector3 position;
 	Vector4 colour;

@@ -1,47 +1,135 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="GameTimer.cpp" />
-    <ClCompile Include="HeightMap.cpp" />
-    <ClCompile Include="Keyboard.cpp" />
-    <ClCompile Include="Matrix4.cpp" />
-    <ClCompile Include="MD5Anim.cpp" />
-    <ClCompile Include="MD5FileData.cpp" />
-    <ClCompile Include="MD5Mesh.cpp" />
-    <ClCompile Include="MD5Node.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Mouse.cpp" />
-    <ClCompile Include="OBJMesh.cpp" />
-    <ClCompile Include="OGLRenderer.cpp" />
-    <ClCompile Include="Quaternion.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Camera.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="HeightMap.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5Anim.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5FileData.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5Mesh.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5Node.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJMesh.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLRenderer.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="Quaternion.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SOIL\SOIL.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="ChildMeshInterface.h" />
-    <ClInclude Include="common.h" />
-    <ClInclude Include="GameTimer.h" />
-    <ClInclude Include="HeightMap.h" />
-    <ClInclude Include="InputDevice.h" />
-    <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="Light.h" />
-    <ClInclude Include="Matrix4.h" />
-    <ClInclude Include="MD5Anim.h" />
-    <ClInclude Include="MD5FileData.h" />
-    <ClInclude Include="MD5Mesh.h" />
-    <ClInclude Include="MD5Node.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Mouse.h" />
-    <ClInclude Include="OBJMesh.h" />
-    <ClInclude Include="OGLRenderer.h" />
-    <ClInclude Include="Quaternion.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Vector3.h" />
-    <ClInclude Include="Vector4.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="Camera.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildMeshInterface.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="HeightMap.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDevice.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5Anim.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5FileData.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5Mesh.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5Node.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJMesh.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLRenderer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SOIL\SOIL.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{3ea3d3d4-2431-43df-bc36-32e630ec5f64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CPPs">
+      <UniqueIdentifier>{1ecfe889-8cab-44e4-abb0-db12c8faefdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
