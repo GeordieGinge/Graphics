@@ -6,11 +6,11 @@
 class Light
 {
 public:
-	Light(Vector3 position, Vector4 colour, float radius)
+	Light(Vector3 _position, Vector4 _colour, float _radius)
 	{
-		this -> position = position;
-		this -> colour = colour;
-		this -> radius = radius;
+		this-> position = _position;
+		this-> colour   = _colour;
+		this-> radius   = _radius;
 	}
 
 	~Light(void) {};
@@ -28,5 +28,4 @@ protected:
 	Vector3 position;
 	Vector4 colour;
 	float radius;
-
 };

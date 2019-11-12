@@ -1,15 +1,16 @@
 #include "Renderer.h"
+
 Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 {
 	camera = new Camera(0.0f, 0.0f, Vector3(
 		RAW_WIDTH * HEIGHTMAP_X / 2.0f, 500, RAW_HEIGHT * HEIGHTMAP_Z));
 
-	heightMap = new HeightMap(TEXTUREDIR "terrain.raw");
-	currentShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
-		SHADERDIR "PerPixelFragment.glsl");
+	heightMap = new HeightMap(TEXTUREDIR"terrain.raw");
+	currentShader = new Shader(SHADERDIR"PerPixelVertex.glsl",
+		SHADERDIR"PerPixelFragment.glsl");
 
 	heightMap->SetTexture(SOIL_load_OGL_texture(
-		TEXTUREDIR "Barren Reds.JPEG", SOIL_LOAD_AUTO,
+		TEXTUREDIR"Barren Reds.jpg", SOIL_LOAD_AUTO,
 		SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	if (!currentShader->LinkProgram() || !heightMap->GetTexture())
@@ -58,8 +59,8 @@ void Renderer::RenderScene()
 	SetShaderLight(*light);
 
 	heightMap->Draw();
-
 	glUseProgram(0);
+
 
 	SwapBuffers();
 }

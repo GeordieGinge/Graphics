@@ -9,15 +9,17 @@ int main() {
 		return -1;
 	}
 	
-	Renderer renderer(w);//This handles all the boring OGL 3.2 initialisation stuff, and sets up our tutorial!
-	if(!renderer.HasInitialised()) {
+	Renderer renderer(w);
+	if(!renderer.HasInitialised()) 
+	{
 		return -1;
 	}
 
 	w.LockMouseToWindow(true);
 	w.ShowOSPointer(false);
 
-	while(w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)){
+	while(w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE))
+	{
 		renderer.UpdateScene(w.GetTimer()->GetTimedMS());
 		renderer.RenderScene();
 	}
