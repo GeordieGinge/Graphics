@@ -43,7 +43,6 @@ void	MD5Node::Update(float msec) {
 }
 
 
-
 /*
 Swaps the currently used animation of this MD5Mesh. 
 */
@@ -76,13 +75,13 @@ void	MD5Node::Draw(const OGLRenderer &r) {
 	support the arbitrary data lookup method used by OpenGL TBOs...
 	*/
 
-#ifdef MD5_USE_HARDWARE_SKINNING
+MD5_USE_HARDWARE_SKINNING
 	sourceData.BindTextureBuffers();
 	sourceData.UpdateTransformTBO(currentSkeleton);
 
 	glUniform1i(glGetUniformLocation(r.GetCurrentShader()->GetProgram(), "weightTex"), MD5_WEIGHT_TEXNUM);
 	glUniform1i(glGetUniformLocation(r.GetCurrentShader()->GetProgram(), "transformTex"), MD5_TRANSFORM_TEXNUM);
-#else 
+ 
 	/*
 	If we're doing 'software' skinning, then we need to make sure the global mesh
 	data is in the correct position for this node before we draw it, which we do
@@ -91,7 +90,7 @@ void	MD5Node::Draw(const OGLRenderer &r) {
 	the correct pose for the current frame of animation. 
 	*/
 	m->SkinVertices(currentSkeleton);
-#endif
+
 	//Finally, we draw the mesh, just like the base class Draw function...
 	m->Draw();
 }

@@ -33,7 +33,19 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 
 	glEnable(GL_DEPTH_TEST);
 	init = true;
+}
 
+Renderer ::~Renderer(void)
+{
+	delete camera;
+	delete heightMap;
+	delete light;
+}
+
+void Renderer::UpdateScene(float msec)
+{
+	camera->UpdateCamera(msec);
+	viewMatrix = camera->BuildViewMatrix();
 }
 
 void Renderer::RenderScene()

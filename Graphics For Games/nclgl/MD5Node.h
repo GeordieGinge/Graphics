@@ -30,7 +30,7 @@ _-_-_-_-_-_-_-""  ""
 
 
 #pragma once
-#include "..\Graphics For Games\9) Skeletal Animation\SceneNode.h"
+#include "SceneNode.h"
 #include "MD5FileData.h"
 #include "MD5Mesh.h"
 

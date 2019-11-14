@@ -1,10 +1,1 @@
-﻿  Renderer.cpp
-LINK : warning LNK4286: symbol '___glewGetUniformLocation' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
-LINK : warning LNK4286: symbol '___glewUniform1i' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
-LINK : warning LNK4286: symbol '___glewUniform3fv' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
-LINK : warning LNK4286: symbol '___glewUseProgram' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
-Renderer.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall Renderer::~Renderer(void)" (??1Renderer@@UAE@XZ) referenced in function "public: virtual void * __thiscall Renderer::`scalar deleting destructor'(unsigned int)" (??_GRenderer@@UAEPAXI@Z)
-Tutorial12.obj : error LNK2001: unresolved external symbol "public: virtual __thiscall Renderer::~Renderer(void)" (??1Renderer@@UAE@XZ)
-Renderer.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Renderer::UpdateScene(float)" (?UpdateScene@Renderer@@UAEXM@Z)
-Tutorial12.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Renderer::UpdateScene(float)" (?UpdateScene@Renderer@@UAEXM@Z)
-C:\Users\Aaron\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Debug\Tutorial 12 - Real-time Lighting B.exe : fatal error LNK1120: 2 unresolved externals
+﻿  Tutorial12.vcxproj -> C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Debug\Tutorial 12 - Real-time Lighting B.exe

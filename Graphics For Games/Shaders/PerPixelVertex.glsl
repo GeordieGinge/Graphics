@@ -9,7 +9,8 @@
  in vec3 normal;
  in vec2 texCoord;
 
- out Vertex{
+ out Vertex
+ {
  vec4 colour;
  vec2 texCoord;
  vec3 normal;

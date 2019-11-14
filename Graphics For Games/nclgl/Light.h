@@ -6,6 +6,8 @@
 class Light
 {
 public:
+
+	Light() {};
 	Light(Vector3 _position, Vector4 _colour, float _radius)
 	{
 		this-> position = _position;

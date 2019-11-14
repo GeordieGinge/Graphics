@@ -75,7 +75,6 @@
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="Tutorial7.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +82,6 @@
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Renderer.h" />
-    <ClInclude Include="SceneNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
