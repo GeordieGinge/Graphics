@@ -1,17 +1,17 @@
-#include "../../nclgl/window.h"
-#include "../Graphics Coursework/Renderer.h"
-
 #pragma comment(lib, "nclgl.lib")
+
+#include "../../nclgl/window.h"
+#include "Renderer.h"
 
 int main() {
 	Window w("Coursework", 800, 600, false);
-	if (!w.HasInitialised())
+	if (!w.HasInitialised()) 
 	{
 		return -1;
 	}
 
 	Renderer renderer(w);
-	if (!renderer.HasInitialised())
+	if (!renderer.HasInitialised()) 
 	{
 		return -1;
 	}
@@ -19,7 +19,7 @@ int main() {
 	w.LockMouseToWindow(true);
 	w.ShowOSPointer(false);
 
-	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) 
+	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE))
 	{
 		renderer.UpdateScene(w.GetTimer()->GetTimedMS());
 		renderer.RenderScene();

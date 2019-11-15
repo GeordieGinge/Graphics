@@ -8,7 +8,7 @@ HeightMap::HeightMap(std::string name)
 		return;
 	}
 	numVertices = RAW_WIDTH * RAW_HEIGHT;
-	numIndices = (RAW_WIDTH - 1) * (RAW_HEIGHT - 1) * 6;
+	numIndices = (RAW_WIDTH - 1) * (RAW_HEIGHT - 1) * 7;
 	vertices = new Vector3[numVertices];
 	textureCoords = new Vector2[numVertices];
 	indices = new GLuint[numIndices];

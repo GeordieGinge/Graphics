@@ -176,19 +176,19 @@ Mesh::~Mesh(void)
 
 	}
 
-	void Mesh::GenerateNormals() 
+	void Mesh::GenerateNormals()
 	{
 		if (!normals) {
 			normals = new Vector3[numVertices];
 
 		}
-		for (GLuint i = 0; i < numVertices; ++i) 
+		for (GLuint i = 0; i < numVertices; ++i)
 		{
 			normals[i] = Vector3();
 
 		}
 		if (indices) { // Generate per - vertex normals
-			for (GLuint i = 0; i < numIndices; i += 3) 
+			for (GLuint i = 0; i < numIndices; i += 3)
 			{
 				unsigned int a = indices[i];
 				unsigned int b = indices[i + 1];
@@ -203,7 +203,7 @@ Mesh::~Mesh(void)
 			}
 		}
 		else { // It ’s just a list of triangles , so generate face normals
-			for (GLuint i = 0; i < numVertices; i += 3) 
+			for (GLuint i = 0; i < numVertices; i += 3)
 			{
 				Vector3& a = vertices[i];
 				Vector3& b = vertices[i + 1];
@@ -217,7 +217,7 @@ Mesh::~Mesh(void)
 			}
 		}
 
-		for (GLuint i = 0; i < numVertices; ++i) 
+		for (GLuint i = 0; i < numVertices; ++i)
 		{
 			normals[i].Normalise();
 		}
@@ -229,17 +229,14 @@ Mesh::~Mesh(void)
 		if (!tangents)
 		{
 			tangents = new Vector3[numVertices];
-
 		}
 		if (!textureCoords)
 		{
 			return; // Can ’t use tex coords if there aren ’t any !
-
 		}
 		for (GLuint i = 0; i < numVertices; ++i)
 		{
 			tangents[i] = Vector3();
-
 		}
 
 		if (indices)
@@ -280,7 +277,8 @@ Mesh::~Mesh(void)
 
 	Vector3 Mesh::GenerateTangent(const Vector3& a, const Vector3& b,
 		const Vector3& c, const Vector2& ta,
-		const Vector2& tb, const Vector2& tc) {
+		const Vector2& tb, const Vector2& tc) 
+	{
 		Vector2 coord1 = tb - ta;
 		Vector2 coord2 = tc - ta;
 
@@ -292,7 +290,6 @@ Mesh::~Mesh(void)
 		float factor = 1.0f / (coord1.x * coord2.y - coord2.x * coord1.y);
 
 		return axis * factor;
-
 	}
 
 
