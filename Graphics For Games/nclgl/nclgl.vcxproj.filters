@@ -49,7 +49,9 @@
     <ClCompile Include="Window.cpp">
       <Filter>CPPs</Filter>
     </ClCompile>
-    <ClCompile Include="SceneNode.cpp" />
+    <ClCompile Include="SceneNode.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -124,7 +126,9 @@
     <ClInclude Include="Window.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="SceneNode.h" />
+    <ClInclude Include="SceneNode.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
