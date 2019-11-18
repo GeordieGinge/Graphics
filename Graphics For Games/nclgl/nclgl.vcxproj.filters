@@ -52,6 +52,12 @@
     <ClCompile Include="SceneNode.cpp">
       <Filter>CPPs</Filter>
     </ClCompile>
+    <ClCompile Include="Frustum.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>CPPs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -127,6 +133,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="SceneNode.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Frustum.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
