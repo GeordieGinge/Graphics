@@ -6,7 +6,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	Pyramid::CreateCube();
 
 	camera = new Camera();
-	heightMap = new HeightMap(TEXTUREDIR "Tmap.raw");
+	heightMap = new HeightMap(TEXTUREDIR "River.raw");
 	quad = Mesh::GenerateQuad();
 
 	camera->SetPosition(Vector3(RAW_WIDTH * HEIGHTMAP_X / 2.0f,
@@ -14,7 +14,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 
 	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 500.0f,
 		(RAW_HEIGHT * HEIGHTMAP_Z / 2.0f)),
-		Vector4(0.9f, 0.9f, 1.0f, 1),
+		Vector4(2.0f, 2.0f, 2.0f, 5),
 		(RAW_WIDTH * HEIGHTMAP_X) / 2.0f);
 
 	reflectShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
@@ -34,7 +34,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	quad->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Blood.JPG",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
-	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Sand2.JPG",
+	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Sand.JPG",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	heightMap->SetBumpMap(SOIL_load_OGL_texture(TEXTUREDIR "Barren RedsDOT3.JPG",
@@ -66,7 +66,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 
 	root = new SceneNode();
 
-	for (int i = 0; i < 5; ++i)
+	/*for (int i = 0; i < 5; ++i)
 	{
 		SceneNode* s = new SceneNode();
 		s->SetColour(Vector4(1.0f, 1.0f, 1.0f, 0.5f));
@@ -75,7 +75,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		s->SetBoundingRadius(100.0f);
 		s->SetMesh(quad);
 		root->AddChild(s);
-	}
+	}*/
 
 	root->AddChild(new Pyramid());
 
@@ -269,7 +269,7 @@ void Renderer::DrawWater()
 
 	float heightX = (RAW_WIDTH * HEIGHTMAP_X / 2.0f);
 
-	float heightY = 256 * HEIGHTMAP_Y / 3.0f;
+	float heightY = 435 * HEIGHTMAP_Y / 3.9f;
 
 	float heightZ = (RAW_HEIGHT * HEIGHTMAP_Z / 2.0f);
 
