@@ -29,13 +29,13 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		}
 	}
 
-	heightMap = new HeightMap(TEXTUREDIR "terrain.raw");
+	heightMap = new HeightMap(TEXTUREDIR "River.raw");
 	heightMap->SetTexture(SOIL_load_OGL_texture(
-		TEXTUREDIR "Barren Reds.JPG", SOIL_LOAD_AUTO,
+		TEXTUREDIR "Sandstone.JPG", SOIL_LOAD_AUTO,
 		SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	heightMap->SetBumpMap(SOIL_load_OGL_texture(
-		TEXTUREDIR "Barren RedsDOT3.JPG", SOIL_LOAD_AUTO,
+		TEXTUREDIR "SandBumpMap.JPG", SOIL_LOAD_AUTO,
 		SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	SetTextureRepeating(heightMap->GetTexture(), true);
@@ -244,7 +244,7 @@ void Renderer::DrawPointLights()
 
 			modelMatrix =
 				pushMatrix *
-				Matrix4::Rotation(rotation, Vector3(0, 1, 0)) *
+				//Matrix4::Rotation(rotation, Vector3(0, 1, 0)) *
 				popMatrix *
 				Matrix4::Translation(l.GetPosition()) *
 				Matrix4::Scale(Vector3(radius, radius, radius));

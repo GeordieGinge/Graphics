@@ -5,6 +5,7 @@
 #include "../../nclgl/HeightMap.h"
 #include "../../nclgl/SceneNode.h"
 #include "../../nclgl/Frustum.h"
+#include "../../nclgl/MD5Node.h"
 #include <algorithm>
 
 class Renderer : public OGLRenderer
@@ -16,7 +17,6 @@ public:
 	virtual void RenderScene();
 	virtual void UpdateScene(float msec);
 
-protected:
 	void Renderer::DrawNode(SceneNode* n);
 	void BuildNodeLists(SceneNode* from);
 	void SortNodeLists();
@@ -33,8 +33,12 @@ protected:
 	Shader* reflectShader;
 	Shader* skyboxShader;
 
+
 	HeightMap* heightMap;
 	Mesh* quad;
+
+	MD5FileData* hellData;
+	MD5Node* hellNode;
 
 	Light* light;
 	Camera* camera;

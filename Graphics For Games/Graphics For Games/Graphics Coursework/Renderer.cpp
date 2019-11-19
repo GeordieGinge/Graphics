@@ -15,7 +15,12 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 500.0f,
 		(RAW_HEIGHT * HEIGHTMAP_Z / 2.0f)),
 		Vector4(2.0f, 2.0f, 2.0f, 5),
-		(RAW_WIDTH * HEIGHTMAP_X) / 2.0f);
+		(RAW_WIDTH * HEIGHTMAP_X));
+
+
+
+	currentShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
+		SHADERDIR "PerPixelFragment.glsl");
 
 	reflectShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
 		SHADERDIR "reflectFragment.glsl");
@@ -23,8 +28,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		SHADERDIR "skyboxFragment.glsl");
 	lightShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
 		SHADERDIR "PerPixelFragment.glsl");
-	currentShader = new Shader(SHADERDIR "SceneVertex.glsl",
-		SHADERDIR "SceneFragment.glsl");
+
 	if (!reflectShader->LinkProgram() || !lightShader->LinkProgram() ||
 		!skyboxShader->LinkProgram())
 	{
@@ -34,10 +38,10 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	quad->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Blood.JPG",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
-	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Sand.JPG",
+	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Sand.jpg",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
-	heightMap->SetBumpMap(SOIL_load_OGL_texture(TEXTUREDIR "Barren RedsDOT3.JPG",
+	heightMap->SetBumpMap(SOIL_load_OGL_texture(TEXTUREDIR "NormalMap.PNG",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	cubeMap = SOIL_load_OGL_cubemap(
@@ -46,6 +50,18 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		TEXTUREDIR "sahara_rt.tga", TEXTUREDIR "sahara_lf.tga",
 		SOIL_LOAD_RGB,
 		SOIL_CREATE_NEW_ID, 0);
+
+	hellData = new MD5FileData(MESHDIR"hellknight.md5mesh");
+
+	hellNode = new MD5Node(*hellData);
+
+	if (!currentShader->LinkProgram())
+	{
+		return;
+	}
+
+	hellData->AddAnim(MESHDIR"walk7.md5anim");
+	hellNode->PlayAnim(MESHDIR"walk7.md5anim");
 
 	if (!cubeMap || !quad->GetTexture() || !heightMap->GetTexture() ||
 		!heightMap->GetBumpMap())
@@ -66,17 +82,6 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 
 	root = new SceneNode();
 
-	/*for (int i = 0; i < 5; ++i)
-	{
-		SceneNode* s = new SceneNode();
-		s->SetColour(Vector4(1.0f, 1.0f, 1.0f, 0.5f));
-		s->SetTransform(Matrix4::Translation(Vector3(0, 100.0f, -300.0f + 100.0f + 100 * i)));
-		s->SetModelScale(Vector3(100.0f, 100.0f, 100.0f));
-		s->SetBoundingRadius(100.0f);
-		s->SetMesh(quad);
-		root->AddChild(s);
-	}*/
-
 	root->AddChild(new Pyramid());
 
 	glEnable(GL_DEPTH_TEST);
@@ -96,6 +101,8 @@ Renderer ::~Renderer(void)
 	delete skyboxShader;
 	delete lightShader;
 	delete light;
+	delete hellData;
+	delete hellNode;
 	Pyramid::DeleteCube();
 	currentShader = 0;
 }
@@ -105,27 +112,27 @@ void Renderer::UpdateScene(float msec)
 	camera->UpdateCamera(msec);
 	viewMatrix = camera->BuildViewMatrix();
 	waterRotate += msec / 1000.0f;
-	//frameFrustum.FromMatrix(projMatrix * viewMatrix);
+	frameFrustum.FromMatrix(projMatrix * viewMatrix);
 	root->Update(msec);
-
+	hellNode->Update(msec);
 }
 
 void Renderer::BuildNodeLists(SceneNode* from)
 {
-//	if (frameFrustum.InsideFrustum(*from))
-//	{
+	if (frameFrustum.InsideFrustum(*from))
+	{
 		Vector3 dir = from->GetWorldTransform().GetPositionVector() - camera->GetPosition();
 		from->SetCameraDistance(Vector3::Dot(dir, dir));
 
-//		if (from->GetColour().w < 1.0f)
-//		{
+		if (from->GetColour().w < 1.0f)
+		{
 			transparentNodeList.push_back(from);
-//		}
-//		else
-	//	{
+		}
+		else
+		{
 			nodeList.push_back(from);
-//		}
-//	}
+		}
+	}
 
 	for (vector < SceneNode* >::const_iterator i = from->GetChildIteratorStart();
 		i != from->GetChildIteratorEnd(); ++i)
@@ -158,56 +165,63 @@ void Renderer::DrawNodes()
 
 void Renderer::DrawNode(SceneNode* n)
 {
-
-	SetCurrentShader(reflectShader);
-	SetShaderLight(*light);
-
 	if (n->GetMesh())
 	{
-		Matrix4 transform = n->GetWorldTransform() *
-			Matrix4::Scale(n->GetModelScale());
-		glUniformMatrix4fv(
-			glGetUniformLocation(currentShader->GetProgram(),
-				"modelMatrix"), 1, false, (float*)&transform);
+		SetCurrentShader(currentShader);
+		SetShaderLight(*light);
+
+		glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false,(float*) & (n->GetWorldTransform() * Matrix4::Scale(n->GetModelScale())));
 
 		glUniform4fv(glGetUniformLocation(currentShader->GetProgram(),
 			"nodeColour"), 1, (float*)&n->GetColour());
 
 		glUniform1i(glGetUniformLocation(currentShader->GetProgram(),
 			"useTexture"), (int)n->GetMesh()->GetTexture());
-
-		modelMatrix.ToIdentity();
-		textureMatrix.ToIdentity();
-
-		UpdateShaderMatrices();
 		n->Draw(*this);
 	}
-
-	for (vector < SceneNode* >::const_iterator
-		i = n->GetChildIteratorStart();
-		i != n->GetChildIteratorEnd(); ++i)
-	{
-		DrawNode(*i);
-	}
-	glUseProgram(0);
 }
 
 
 void Renderer::RenderScene()
 {
+	BuildNodeLists(root);
+	SortNodeLists();
+
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 	glUseProgram(currentShader->GetProgram());
-	UpdateShaderMatrices();
-
 	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "diffuseTex"), 0);
 
-	DrawNodes();
+	glUniform3fv(glGetUniformLocation(currentShader->GetProgram(),
+		"cameraPos"), 1, (float*)&camera->GetPosition());
+
+	UpdateShaderMatrices();
+	SetShaderLight(*light);
+
 	DrawSkybox();
-	DrawHeightmap();
 	DrawWater();
-	DrawNode(root);
+	DrawHeightmap();
+
+	DrawNodes();
+
+
+	for (int y = 1; y < 3; ++y)
+	{
+		for (int x = 1; x < 3; ++x)
+		{
+			modelMatrix.ToIdentity();
+			SetCurrentShader(lightShader);
+			SetShaderLight(*light);
+			UpdateShaderMatrices();
+			modelMatrix = Matrix4::Translation(Vector3(x * 2000, 200, y * 2000));
+			UpdateShaderMatrices();
+			hellNode->Draw(*this);
+		}
+	}
+	
+	glUseProgram(0);
 	SwapBuffers();
+	ClearNodeLists();
 }
 
 void Renderer::ClearNodeLists()
@@ -238,6 +252,7 @@ void Renderer::DrawHeightmap()
 
 	glUniform1i(glGetUniformLocation(currentShader->GetProgram(),
 		"diffuseTex"), 0);
+
 	glUniform1i(glGetUniformLocation(currentShader->GetProgram(),
 		"bumpTex"), 1);
 
@@ -245,9 +260,7 @@ void Renderer::DrawHeightmap()
 	textureMatrix.ToIdentity();
 
 	UpdateShaderMatrices();
-
 	heightMap->Draw();
-
 	glUseProgram(0);
 }
 

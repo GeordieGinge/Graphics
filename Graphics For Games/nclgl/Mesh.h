@@ -19,6 +19,9 @@ public:
 	static Mesh* GenerateQuad();
 	GLuint GetTexture() { return texture; }
 	GLuint GetBumpMap() { return bumpTexture; }
+
+	void CreateNormals();
+	void CreateBufferData();
 protected:
 	void BufferData();
 	void GenerateNormals();

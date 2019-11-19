@@ -13,10 +13,13 @@ public:
 	static void CreateCube()
 	{
 		OBJMesh* m = new OBJMesh();
-		m->LoadOBJMesh(MESHDIR"pyramid.obj");
-		m->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Sand2.jpg",
+		m->LoadOBJMesh(MESHDIR"pyramid.OBJ");
+		m->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Sand.JPG",
 			SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 		pyramid = m;
+		pyramid->CreateNormals();
+		pyramid->CreateBufferData();
+		
 	}
 	static void DeleteCube() { delete pyramid; }
 

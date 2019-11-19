@@ -94,7 +94,15 @@ Mesh::~Mesh(void)
 		return m;
 	}
 
+	void Mesh::CreateNormals()
+	{
+		GenerateNormals();
+	}
 
+	void Mesh::CreateBufferData()
+	{
+		BufferData();
+	}
 	void Mesh::BufferData()
 	{
 		glBindVertexArray(arrayObject);
