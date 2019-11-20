@@ -17,15 +17,15 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		Vector4(2.0f, 2.0f, 2.0f, 5),
 		(RAW_WIDTH * HEIGHTMAP_X));
 
-
-
 	currentShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
 		SHADERDIR "PerPixelFragment.glsl");
 
 	reflectShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
 		SHADERDIR "reflectFragment.glsl");
+
 	skyboxShader = new Shader(SHADERDIR "skyboxVertex.glsl",
 		SHADERDIR "skyboxFragment.glsl");
+
 	lightShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
 		SHADERDIR "PerPixelFragment.glsl");
 
@@ -51,21 +51,21 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		SOIL_LOAD_RGB,
 		SOIL_CREATE_NEW_ID, 0);
 
-	hellData = new MD5FileData(MESHDIR"hellknight.md5mesh");
+	watcherData = new MD5FileData(MESHDIR"hellknight.md5mesh");
 
-	hellNode = new MD5Node(*hellData);
+	watcherNode = new MD5Node(*watcherData);
 
 	if (!currentShader->LinkProgram())
 	{
 		return;
 	}
 
-	hellData->AddAnim(MESHDIR"walk7.md5anim");
-	hellNode->PlayAnim(MESHDIR"walk7.md5anim");
+	watcherData->AddAnim(MESHDIR"walk7.md5anim");
+	watcherNode->PlayAnim(MESHDIR"walk7.md5anim");
 
 	if (!cubeMap || !quad->GetTexture() || !heightMap->GetTexture() ||
 		!heightMap->GetBumpMap())
-	{
+	
 		return;
 	}
 
@@ -83,7 +83,8 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	root = new SceneNode();
 
 	root->AddChild(new Pyramid());
-
+	root->AddChild(new Pyramid(Vector3(6480, 400, 5000), Vector3(1000, 1000, 1000)));
+	
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -101,8 +102,8 @@ Renderer ::~Renderer(void)
 	delete skyboxShader;
 	delete lightShader;
 	delete light;
-	delete hellData;
-	delete hellNode;
+	delete watcherData;
+	delete watcherNode;
 	Pyramid::DeleteCube();
 	currentShader = 0;
 }
@@ -114,7 +115,7 @@ void Renderer::UpdateScene(float msec)
 	waterRotate += msec / 1000.0f;
 	frameFrustum.FromMatrix(projMatrix * viewMatrix);
 	root->Update(msec);
-	hellNode->Update(msec);
+	watcherNode->Update(msec);
 }
 
 void Renderer::BuildNodeLists(SceneNode* from)
@@ -215,7 +216,7 @@ void Renderer::RenderScene()
 			UpdateShaderMatrices();
 			modelMatrix = Matrix4::Translation(Vector3(x * 2000, 200, y * 2000));
 			UpdateShaderMatrices();
-			hellNode->Draw(*this);
+			watcherNode->Draw(*this);
 		}
 	}
 	

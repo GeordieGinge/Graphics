@@ -5,10 +5,11 @@
 class Pyramid : public SceneNode
 {
 public:
+	Pyramid(Vector3 position, Vector3 scale);
 	Pyramid(void);
 	~Pyramid(void) {};
 	virtual void Update(float msec);
-
+	
 
 	static void CreateCube()
 	{
@@ -19,11 +20,11 @@ public:
 		pyramid = m;
 		pyramid->CreateNormals();
 		pyramid->CreateBufferData();
-		
 	}
 	static void DeleteCube() { delete pyramid; }
 
 protected:
 	static Mesh* pyramid;
 	SceneNode* body;
+	int Timer;
 };

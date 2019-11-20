@@ -37,8 +37,8 @@ public:
 	HeightMap* heightMap;
 	Mesh* quad;
 
-	MD5FileData* hellData;
-	MD5Node* hellNode;
+	MD5FileData* watcherData;
+	MD5Node* watcherNode;
 
 	Light* light;
 	Camera* camera;

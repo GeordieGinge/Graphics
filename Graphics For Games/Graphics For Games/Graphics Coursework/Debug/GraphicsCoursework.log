@@ -1,6 +1,4 @@
-﻿  Pyramid.cpp
-  Renderer.cpp
-C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Graphics Coursework\Renderer.cpp(216,64): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-  Generating Code...
-C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Graphics Coursework\Renderer.cpp(216,49): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+﻿  Renderer.cpp
+C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Graphics Coursework\Renderer.cpp(217,64): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Graphics Coursework\Renderer.cpp(217,49): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
   GraphicsCoursework.vcxproj -> C:\Users\Admin\Desktop\GITHUB\Graphics\Graphics For Games\Graphics For Games\Debug\GraphicsCoursework.exe
