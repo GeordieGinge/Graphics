@@ -52,23 +52,10 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		SOIL_CREATE_NEW_ID, 0);
 
 	watcherData = new MD5FileData(MESHDIR"hellknight.md5mesh");
-
 	watcherNode = new MD5Node(*watcherData);
-
-	if (!currentShader->LinkProgram())
-	{
-		return;
-	}
 
 	watcherData->AddAnim(MESHDIR"walk7.md5anim");
 	watcherNode->PlayAnim(MESHDIR"walk7.md5anim");
-
-	if (!cubeMap || !quad->GetTexture() || !heightMap->GetTexture() ||
-		!heightMap->GetBumpMap())
-	
-		return;
-	}
-
 
 	SetTextureRepeating(quad->GetTexture(), true);
 	SetTextureRepeating(heightMap->GetTexture(), true);
@@ -81,7 +68,6 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		(float)width / (float)height, 45.0f);
 
 	root = new SceneNode();
-
 	root->AddChild(new Pyramid());
 	root->AddChild(new Pyramid(Vector3(6480, 400, 5000), Vector3(1000, 1000, 1000)));
 	
