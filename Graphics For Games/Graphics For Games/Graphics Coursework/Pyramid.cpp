@@ -34,6 +34,5 @@ void Pyramid::Update(float msec)
 		Timer += 1;
 	}
 
-
 	SceneNode::Update(msec);
 }

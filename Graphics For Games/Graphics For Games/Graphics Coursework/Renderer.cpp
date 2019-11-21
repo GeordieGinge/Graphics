@@ -166,7 +166,6 @@ void Renderer::DrawNode(SceneNode* n)
 	}
 }
 
-
 void Renderer::RenderScene()
 {
 	BuildNodeLists(root);
