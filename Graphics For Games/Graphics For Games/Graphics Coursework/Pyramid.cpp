@@ -7,7 +7,7 @@ Pyramid::Pyramid(Vector3 position, Vector3 scale)
 	this->body = new SceneNode(pyramid);
 	this->body->SetTransform(Matrix4::Translation(position) * Matrix4::Rotation(-90, Vector3(1, 0, 0)));
 	this->body->SetModelScale(scale);
-	this->body->SetBoundingRadius(500);
+	this->body->SetBoundingRadius(1000);
 	AddChild(body);
 	Timer = 0;
 }

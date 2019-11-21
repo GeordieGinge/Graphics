@@ -29,12 +29,6 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	lightShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
 		SHADERDIR "PerPixelFragment.glsl");
 
-	if (!reflectShader->LinkProgram() || !lightShader->LinkProgram() ||
-		!skyboxShader->LinkProgram())
-	{
-		return;
-	}
-
 	quad->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Blood.JPG",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
@@ -61,7 +55,6 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	SetTextureRepeating(heightMap->GetTexture(), true);
 	SetTextureRepeating(heightMap->GetBumpMap(), true);
 
-	init = true;
 	waterRotate = 0.0f;
 
 	projMatrix = Matrix4::Perspective(1.0f, 15000.0f,
@@ -191,10 +184,9 @@ void Renderer::RenderScene()
 
 	DrawNodes();
 
-
-	for (int y = 1; y < 3; ++y)
+	for (int y = 0; y < 1; ++y)
 	{
-		for (int x = 1; x < 3; ++x)
+		for (int x = 0; x < 1; ++x)
 		{
 			modelMatrix.ToIdentity();
 			SetCurrentShader(lightShader);
