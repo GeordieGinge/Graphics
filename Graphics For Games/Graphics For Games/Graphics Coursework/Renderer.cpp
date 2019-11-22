@@ -15,7 +15,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 
 	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 500.0f,
 		(RAW_HEIGHT * HEIGHTMAP_Z / 2.0f)),
-		Vector4(2.0f, 2.0f, 2.0f, 5),
+		Vector4(1.5f, 1.5f, 1.5f, 10),
 		(RAW_WIDTH * HEIGHTMAP_X));
 
 	bumpShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
