@@ -18,6 +18,9 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		Vector4(2.0f, 2.0f, 2.0f, 5),
 		(RAW_WIDTH * HEIGHTMAP_X));
 
+	bumpShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
+		SHADERDIR "PerPixelFragment.glsl");
+
 	currentShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
 		SHADERDIR "PerPixelFragment.glsl");
 
@@ -29,20 +32,22 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 
 	lightShader = new Shader(SHADERDIR "PerPixelVertex.glsl",
 		SHADERDIR "PerPixelFragment.glsl");
-	
-	if (!reflectShader->LinkProgram() || !lightShader->LinkProgram() ||
-		!skyboxShader->LinkProgram())
-	{
-		return;
-	}
-
-	quad->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Blood.JPG",
-		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Sand.jpg",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	heightMap->SetBumpMap(SOIL_load_OGL_texture(TEXTUREDIR "NormalMap.PNG",
+		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+
+	if (!currentShader->LinkProgram() ||!bumpShader->LinkProgram() || !reflectShader->LinkProgram()||
+		!heightMap->GetTexture() || !heightMap->GetBumpMap() || !lightShader->LinkProgram() ||
+		!skyboxShader->LinkProgram())
+	{
+		return;
+	}
+
+
+	quad->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Blood.JPG",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	cubeMap = SOIL_load_OGL_cubemap(
@@ -153,6 +158,7 @@ void Renderer::DrawNode(SceneNode* n)
 	if (n->GetMesh())
 	{
 		SetCurrentShader(currentShader);
+		glUseProgram(currentShader->GetProgram());
 		SetShaderLight(*light);
 
 		glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false,(float*) & (n->GetWorldTransform() * Matrix4::Scale(n->GetModelScale())));
@@ -162,6 +168,12 @@ void Renderer::DrawNode(SceneNode* n)
 
 		glUniform1i(glGetUniformLocation(currentShader->GetProgram(),
 			"useTexture"), (int)n->GetMesh()->GetTexture());
+
+		glUniform1i(glGetUniformLocation(currentShader->GetProgram(),
+			"diffuseTex"), 0);
+		glUniform1i(glGetUniformLocation(currentShader->GetProgram(),
+			"bumpTex"), 1);
+
 		n->Draw(*this);
 	}
 }
@@ -174,20 +186,23 @@ void Renderer::RenderScene()
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 	glUseProgram(currentShader->GetProgram());
-	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "diffuseTex"), 0);
+	glUniform1i(glGetUniformLocation(currentShader->GetProgram(),
+		"diffuseTex"), 0);
+	glUniform1i(glGetUniformLocation(currentShader->GetProgram(),
+		"bumpTex"), 1);
 
 	glUniform3fv(glGetUniformLocation(currentShader->GetProgram(),
 		"cameraPos"), 1, (float*)&camera->GetPosition());
 
+	
+
 	UpdateShaderMatrices();
 	SetShaderLight(*light);
-
 	DrawSkybox();
 	DrawWater();
-	DrawHeightmap();
-
+    DrawHeightmap();
 	DrawNodes();
-
+	/*
 	for (int y = 1; y < 2; ++y)
 	{
 		for (int x = 1; x < 2; ++x)
@@ -201,6 +216,7 @@ void Renderer::RenderScene()
 			watcherNode->Draw(*this);
 		}
 	}
+	*/
 	glUseProgram(0);
 	SwapBuffers();
 	ClearNodeLists();

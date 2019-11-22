@@ -22,6 +22,8 @@ public:
 
 	void CreateNormals();
 	void CreateBufferData();
+	void CreateTangents();
+
 protected:
 	void BufferData();
 	void GenerateNormals();

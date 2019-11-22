@@ -32,6 +32,7 @@ public:
 	Shader* lightShader;
 	Shader* reflectShader;
 	Shader* skyboxShader;
+	Shader* bumpShader;
 
 
 	HeightMap* heightMap;

@@ -16,11 +16,13 @@ public:
 	{
 		OBJMesh* m = new OBJMesh();
 		m->LoadOBJMesh(MESHDIR"pyramid.OBJ");
-		m->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Sandbrick.JPG",
+		m->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Sand.JPG",
 			SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
-
+		m->SetBumpMap(SOIL_load_OGL_texture(TEXTUREDIR"NormalMap.png",
+			SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 		pyramid = m;
 		pyramid->CreateNormals();
+		pyramid->CreateTangents();
 		pyramid->CreateBufferData();
 	}
 	static void DeleteCube() { delete pyramid; }
