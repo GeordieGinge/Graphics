@@ -53,5 +53,4 @@
 	 vec3 colour = (diffuse.rgb * lightColour.rgb);
 	 colour += (lightColour.rgb * sFactor) * 0.33;
 	 fragColour = vec4(colour * atten * lambert, diffuse.a);
-	 fragColour.rgb += (diffuse.rgb * lightColour.rgb) * 0.1;
- }
+	 fragColour.rgb += (diffuse.rgb * lightColour.rgb) * 0.1; }

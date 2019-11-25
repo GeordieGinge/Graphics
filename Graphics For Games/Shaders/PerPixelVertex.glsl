@@ -23,10 +23,13 @@ vec3 worldPos;
 
 void main(void)
 {
+mat4 mvp = projMatrix * viewMatrix * modelMatrix; //Newww
+
 mat3 normalMatrix = transpose(inverse(mat3(modelMatrix)));
 
 OUT.colour = colour;
 OUT.texCoord = (textureMatrix * vec4(texCoord,0,1)).xy;
+
 
 OUT.normal = normalize(normalMatrix * normalize(normal));
 OUT.tangent = normalize(normalMatrix * normalize(tangent));

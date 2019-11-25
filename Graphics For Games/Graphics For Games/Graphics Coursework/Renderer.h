@@ -8,6 +8,8 @@
 #include "../../nclgl/MD5Node.h"
 #include <algorithm>
 
+#define SHADOWSIZE 2048
+
 class Renderer : public OGLRenderer
 {
 public:
@@ -17,6 +19,7 @@ public:
 	virtual void RenderScene();
 	virtual void UpdateScene(float msec);
 
+protected:
 	void Renderer::DrawNode(SceneNode* n);
 	void BuildNodeLists(SceneNode* from);
 	void SortNodeLists();
@@ -25,6 +28,9 @@ public:
 	void DrawHeightmap();
 	void DrawWater();
 	void DrawSkybox();
+	void DrawShadowScene();
+	void DrawCombinedScene();
+    void DrawMesh();
 
 	SceneNode* root;
 
@@ -33,7 +39,7 @@ public:
 	Shader* reflectShader;
 	Shader* skyboxShader;
 	Shader* bumpShader;
-
+	Shader* shadowShader;
 
 	HeightMap* heightMap;
 	Mesh* quad;
@@ -45,6 +51,8 @@ public:
 	Camera* camera;
 
 	GLuint cubeMap;
+	GLuint shadowTex;
+	GLuint shadowFBO;
 
 	Frustum frameFrustum;
 

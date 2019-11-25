@@ -4,6 +4,7 @@
  uniform mat4 viewMatrix;
  uniform mat4 projMatrix;
  uniform mat4 textureMatrix;
+ uniform mat4 shadowMatrix;
 
  in vec3 position;
  in vec3 colour;
@@ -35,8 +36,9 @@
 		 normalize(cross(normal, tangent)));
 
 	 OUT.worldPos = (modelMatrix * vec4(position, 1)).xyz;
-	 // New !
-	 OUT.shadowProj = (textureMatrix * vec4(position + (normal * 1.5), 1));
+	 // New !                                                            //Was 5 prev
+	 OUT.shadowProj = (textureMatrix * shadowMatrix * modelMatrix * vec4(position + (normal * 5), 1)); //Dan fix alternative for shadow
+	// OUT.shadowProj = (textureMatrix *vec4(position + (normal * 1.5), 1));
 
 	 gl_Position = (projMatrix * viewMatrix * modelMatrix) *
 		 vec4(position, 1.0);
