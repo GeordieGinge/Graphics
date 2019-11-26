@@ -20,7 +20,7 @@
  vec3 tangent;
  vec3 binormal;
  vec3 worldPos;
- vec4 shadowProj; // New !
+ vec4 shadowProj;
  } OUT;
 
  void main(void)
@@ -35,10 +35,8 @@
 	 OUT.binormal = normalize(normalMatrix *
 		 normalize(cross(normal, tangent)));
 
-	 OUT.worldPos = (modelMatrix * vec4(position, 1)).xyz;
-	 // New !                                                            //Was 5 prev
-	 OUT.shadowProj = (textureMatrix * shadowMatrix * modelMatrix * vec4(position + (normal * 5), 1)); //Dan fix alternative for shadow
-	// OUT.shadowProj = (textureMatrix *vec4(position + (normal * 1.5), 1));
+	 OUT.worldPos = (modelMatrix * vec4(position, 1)).xyz;                                
+	 OUT.shadowProj = (textureMatrix * shadowMatrix * modelMatrix * vec4(position + (normal * 30), 1));
 
 	 gl_Position = (projMatrix * viewMatrix * modelMatrix) *
 		 vec4(position, 1.0);

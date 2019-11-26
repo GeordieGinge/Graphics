@@ -14,8 +14,8 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 		500.0f, RAW_WIDTH * HEIGHTMAP_X));
 
 
-	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 1.0f), 1000, 
-		(RAW_HEIGHT * HEIGHTMAP_Z)), Vector4(1, 1, 1, 1), (RAW_WIDTH * HEIGHTMAP_X) * 5);
+	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X * 2), 3500, 
+		(RAW_HEIGHT * HEIGHTMAP_Z / 2)), Vector4(1, 1, 1, 1), (RAW_WIDTH * HEIGHTMAP_X) * 7);
 
 
 	currentShader = new Shader(SHADERDIR "PerPixelLightVertex.glsl", SHADERDIR "PerPixelLightFragment.glsl");
@@ -62,7 +62,6 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	glDrawBuffer(GL_NONE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-
 	quad->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Blood.JPG",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
@@ -76,8 +75,8 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	watcherData = new MD5FileData(MESHDIR"hellknight.md5mesh");
 	watcherNode = new MD5Node(*watcherData);
 
-	watcherData->AddAnim(MESHDIR"walk7.md5anim");
-	watcherNode->PlayAnim(MESHDIR"walk7.md5anim");
+	watcherData->AddAnim(MESHDIR"idle2.md5anim");
+	watcherNode->PlayAnim(MESHDIR"idle2.md5anim");
 
 	SetTextureRepeating(quad->GetTexture(), true);
 	SetTextureRepeating(heightMap->GetTexture(), true);
@@ -89,11 +88,13 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent)
 	root = new SceneNode();
 	root->AddChild(new Pyramid());
 	root->AddChild(new Pyramid(Vector3(6480, 400, 5000), Vector3(1000, 1000, 1000)));
-	root->AddChild(new Pyramid(Vector3(2000,200,2000),Vector3(100,100,100)));
+	root->AddChild(new Pyramid(Vector3(2500, 100, 1000),Vector3(1000,1000,1000)));
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_DEPTH_TEST);
-//	glEnable(GL_BLEND);
-//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
 	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+
 	init = true;
 }
 
@@ -177,10 +178,10 @@ void Renderer::DrawMesh()
 {
 	modelMatrix = Matrix4::Translation(Vector3(3000, 200, 2700));
 	Matrix4 tempMatrix = textureMatrix * modelMatrix;
-	//	glUseProgram(currentShader->GetProgram());  
-	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "textureMatrix"), 1, false, *&tempMatrix.values);
-	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*) & (watcherNode->GetWorldTransform() * Matrix4::Scale(watcherNode->GetModelScale())));
 
+	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "textureMatrix"), 1, false, *&tempMatrix.values);
+
+	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*) & (watcherNode->GetWorldTransform() * Matrix4::Scale(watcherNode->GetModelScale())));
 
 	glUniform4fv(glGetUniformLocation(currentShader->GetProgram(), "nodeColour"), 1, (float*)&watcherNode->GetColour());
 
@@ -196,10 +197,10 @@ void Renderer::DrawNode(SceneNode* n)
 	{
 		modelMatrix.ToIdentity();
 		Matrix4 tempMatrix = textureMatrix * modelMatrix;
-		//	glUseProgram(currentShader->GetProgram());  
-		glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "textureMatrix"), 1, false, *&tempMatrix.values);
-		glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*) & (n->GetWorldTransform() * Matrix4::Scale(n->GetModelScale())));
 
+		glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "textureMatrix"), 1, false, *&tempMatrix.values);
+
+		glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*) & (n->GetWorldTransform() * Matrix4::Scale(n->GetModelScale())));
 
 		glUniform4fv(glGetUniformLocation(currentShader->GetProgram(), "nodeColour"), 1, (float*)&n->GetColour());
 
@@ -216,21 +217,7 @@ void Renderer::RenderScene()
 	DrawWater();
 	DrawShadowScene();
 	DrawCombinedScene();
-	/*
-	for (int y = 1; y < 2; ++y)
-	{
-		for (int x = 1; x < 2; ++x)
-		{
-			modelMatrix.ToIdentity();
-			SetCurrentShader(lightShader);
-			SetShaderLight(*light);
-			UpdateShaderMatrices();
-			modelMatrix = Matrix4::Translation(Vector3(x * 2000, 200, y * 2000));
-			UpdateShaderMatrices();
-			watcherNode->Draw(*this);
-		}
-	}
-	*/
+
 	SwapBuffers();
 }
 
@@ -262,7 +249,6 @@ void Renderer::DrawShadowScene()
 	glViewport(0, 0, width, height);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-//	ClearNodeLists();
 }
 
 void Renderer::DrawCombinedScene()
@@ -320,7 +306,6 @@ void Renderer::DrawHeightmap()
 
 	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "textureMatrix"), 1, false, *&tempMatrix.values);
 	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, *&modelMatrix.values);
-
 
 	UpdateShaderMatrices();
 	heightMap->Draw();

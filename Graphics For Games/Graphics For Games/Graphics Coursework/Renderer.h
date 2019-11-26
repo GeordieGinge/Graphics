@@ -8,7 +8,7 @@
 #include "../../nclgl/MD5Node.h"
 #include <algorithm>
 
-#define SHADOWSIZE 2048
+#define SHADOWSIZE 16384
 
 class Renderer : public OGLRenderer
 {
